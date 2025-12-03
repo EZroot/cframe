@@ -14,7 +14,7 @@ include(FetchContent)
 FetchContent_Declare(
     ftxui_content
     GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI.git
-    GIT_TAG v4.0.0 # Use a stable tag to ensure reproducibility
+    GIT_TAG v4.0.0 
 )
 
 # Download and make the content available to the build
@@ -24,8 +24,9 @@ FetchContent_MakeAvailable(ftxui_content)
 # Define your application executable
 # --- FIX: List all source files relative to the project root ---
 add_executable(cframe
-    src/core/main.cpp            # Your entry point
-    src/rendering/screen_loop.cpp # The function definition for your loop logic
+    src/core/main.cpp           
+    src/rendering/screen_loop.cpp 
+    src/media/media_pipe.cpp 
 )
 
 # Link your executable against the necessary FTXUI targets/modules
@@ -37,9 +38,8 @@ target_link_libraries(cframe PRIVATE
 )
 
 # Optional but Recommended: Add the 'src' directory to the include path.
-# This allows files in 'src/core/' to include 'timer.h' simply as #include "timer.h"
-# (Assuming your 'timer.h' is actually 'src/rendering/timer.h' based on the image,
-#  but placing it in 'src/core' or 'src/rendering' is acceptable for now)
+# This allows files in 'src/core/' to include headers as #include <whatever>
 target_include_directories(cframe PRIVATE
+    src/media
     src/rendering
 )
