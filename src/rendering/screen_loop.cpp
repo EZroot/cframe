@@ -35,7 +35,7 @@ auto MapFrameToCanvas = [](ftxui::Canvas& c, const std::vector<unsigned char>& d
                 unsigned char G = data[index + 1];
                 unsigned char B = data[index + 2];
                 const ftxui::Color color_value = ftxui::Color::RGB((int)R, (int)G, (int)B);
-                c.DrawPoint(x, y, true, color_value);
+                c.DrawBlock(x, y, true, color_value);
             }
         }
     }
