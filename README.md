@@ -1,7 +1,8 @@
 # cframe: Terminal Video Player
 
-Want a little lightweight video streaming / player while you do terminal shit?
-Then **cframe** is for you!
+**Terminal too boring? Need some visual distractions?**
+
+### Then **<ins>cframe</ins>** is for you!
 
 ---
 
@@ -10,7 +11,7 @@ Then **cframe** is for you!
 
 ---
 
-## 🛠️ Dependencies
+## Dependencies
 
 **cframe** requires the following libraries and tools to be installed on your system:
 
