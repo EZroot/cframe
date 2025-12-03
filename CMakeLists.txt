@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.14)
 project(KubuntuTUIProject CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Useful for IDEs like VS Code/Kate
 
 # --- Fetch FTXUI Source Code ---
 include(FetchContent)
@@ -21,12 +22,24 @@ FetchContent_MakeAvailable(ftxui_content)
 # -------------------------------
 
 # Define your application executable
-add_executable(cframe main.cpp)
+# --- FIX: List all source files relative to the project root ---
+add_executable(cframe
+    src/core/main.cpp            # Your entry point
+    src/rendering/screen_loop.cpp # The function definition for your loop logic
+)
 
 # Link your executable against the necessary FTXUI targets/modules
-# You only need ftxui::dom and ftxui::screen for this example.
+# These are necessary because you use ScreenInteractive, Renderer, Canvas, etc.
 target_link_libraries(cframe PRIVATE 
-	ftxui::dom
-	ftxui::screen
-	ftxui::component
+    ftxui::dom
+    ftxui::screen
+    ftxui::component
+)
+
+# Optional but Recommended: Add the 'src' directory to the include path.
+# This allows files in 'src/core/' to include 'timer.h' simply as #include "timer.h"
+# (Assuming your 'timer.h' is actually 'src/rendering/timer.h' based on the image,
+#  but placing it in 'src/core' or 'src/rendering' is acceptable for now)
+target_include_directories(cframe PRIVATE
+    src/rendering
 )
