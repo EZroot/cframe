@@ -9,10 +9,10 @@ public:
     MediaPipe() = default;
     ~MediaPipe();
     
-    bool open(const std::string& video_path, int& out_width, int& out_height, int& out_channels);
+    bool open(const std::string& video_path, int& out_width, int& out_height, int& out_channels, bool is_url);
     bool read_frame(std::vector<unsigned char>& frame_data);
     void close();
-    bool get_dimensions(const std::string& video_path, int& w, int& h);
+    bool get_dimensions(const std::string& video_path, int& w, int& h, bool is_url);
 
 private:
     FILE* pipe_ = nullptr; 

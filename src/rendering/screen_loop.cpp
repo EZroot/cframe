@@ -41,7 +41,7 @@ auto MapFrameToCanvas = [](ftxui::Canvas& c, const std::vector<unsigned char>& d
     }
 };
 
-void RunAppLoop(const float FPS_TARGET, const std::string& video_path) {
+void RunAppLoop(const float FPS_TARGET, const std::string& video_path, const bool is_url) {
 
     float total_elapsed_time = 0.0f;
     TimePoint last_time = Clock::now();
@@ -51,7 +51,7 @@ void RunAppLoop(const float FPS_TARGET, const std::string& video_path) {
     int w = 0, h = 0, c = 0;
     std::vector<unsigned char> current_frame_pixels;
 
-    if (!pipe.open(video_path, w, h, c)) {
+    if (!pipe.open(video_path, w, h, c, is_url)) {
         std::cout << "Pipe failed to open video file" << std::endl;
         return;
     }
